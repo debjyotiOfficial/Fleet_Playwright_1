@@ -54,7 +54,6 @@ test.describe('Current Location Report', () => {
         await page.waitForTimeout(3000);
         
         // Verify current location report container is visible - wait longer
-        await page.waitForTimeout(2000);
         await expect(page.locator(config.selectors.currentLocationReport.currentLocationContainer)).toBeVisible({ timeout: 30000 });
         
         // Click inside the modal/container to close the navbar and avoid overlay issues
