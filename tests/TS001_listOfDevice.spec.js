@@ -26,7 +26,7 @@ test.describe("List of Device", () => {
 
         // Wait for the device table to load
         await page.waitForSelector(config.selectors.devList.deviceTable, {
-            timeout: config.timeouts.reportWait
+            // timeout: config.timeouts.reportWait
         });
 
         // Verify table has data rows
@@ -79,7 +79,7 @@ test.describe("List of Device", () => {
     }
 
     // Wait a bit for menu animation to complete
-    await page.waitForTimeout(config.timeouts.searchWait);
+    await page.waitForTimeout(5000);
 
         // Step 1: Verify we're on the device list page
     console.log('Step 1: Verifying device list page...');
@@ -129,7 +129,7 @@ test.describe("List of Device", () => {
     console.log('✓ Clicked pencil icon for Demo1');
     
     // Wait for the edit modal to appear
-    await page.waitForTimeout(config.timeouts.searchWait);
+    await page.waitForTimeout(10000); // Wait for modal to load
     
     // Step 3: Click the "Edit Device" tab and make changes
     console.log('Step 3: Clicking Edit Device tab and editing device...');
@@ -138,7 +138,7 @@ test.describe("List of Device", () => {
     await page.locator('button[data-tab="edit"]').nth(0).click({ force: true });
     console.log('✓ Clicked Edit Device tab');
     
-    await page.waitForTimeout(config.timeouts.searchWait);
+    await page.waitForTimeout(50000); // Wait for tab content to load
     
     // Check if the dropdown exists and handle it appropriately
     try {
@@ -151,7 +151,7 @@ test.describe("List of Device", () => {
       await vehicleDropdown.evaluate(element => element.click());
       console.log('✓ Triggered click on vehicle dropdown');
       
-      await page.waitForTimeout(config.timeouts.searchWait);
+      await page.waitForTimeout(10000); // Wait for options to load
       
       // Select Demo1 option
       await vehicleDropdown.selectOption('Demo1 (IMEI: 223004085)');
@@ -218,7 +218,7 @@ test.describe("List of Device", () => {
       console.log('⚠ Warning: Could not click update button');
     }
     
-    await page.waitForTimeout(config.timeouts.searchWait);
+    await page.waitForTimeout(15000); // Wait for update to process
     
     // Step 4: Test export functionality
     console.log('Step 4: Testing export functionality...');

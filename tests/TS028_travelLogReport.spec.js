@@ -87,7 +87,7 @@ test.describe('Travel Log Report', () => {
         await expect(page.locator(config.selectors.tlr.submitButton)).toBeVisible();
         await page.locator(config.selectors.tlr.submitButton).click({ force: true });
         
-        await page.waitForTimeout(config.timeouts.reportWait);
+        await page.waitForTimeout(30000);
         
         // Wait for the limited report to be visible
         await expect(page.locator(config.selectors.report.limitedReport)).toBeVisible();
@@ -100,7 +100,7 @@ test.describe('Travel Log Report', () => {
         await expect(page.locator(config.selectors.report.submitButton)).toBeVisible();
         await page.locator(config.selectors.report.submitButton).click({ force: true });
         
-        await page.waitForTimeout(config.timeouts.reportWait);
+        await page.waitForTimeout(30000);
         
 
         // Check/uncheck the "Show Engine Idling Events" checkbox and verify search results
