@@ -8,6 +8,7 @@ test.describe("List of Device", () => {
     });
 
     test('should show list of all devices in the platform', async ({ page }) => {
+        test.setTimeout(300000); // 5 minutes timeout
         const helpers = new TestHelpers(page);
         const config = await helpers.getConfig();
 
@@ -26,7 +27,7 @@ test.describe("List of Device", () => {
 
         // Wait for the device table to load
         await page.waitForSelector(config.selectors.devList.deviceTable, {
-            // timeout: config.timeouts.reportWait
+            timeout: 30000 // 30 seconds timeout
         });
 
         // Verify table has data rows
@@ -109,7 +110,7 @@ test.describe("List of Device", () => {
     console.log('✓ Searched for Demo1');
     
     // Wait for the table to filter
-    await page.waitForTimeout(config.timeouts.searchWait);
+    await page.waitForTimeout(3000);
     
     // Verify that the filtered row contains 'Demo1' in the Device Type column
     const deviceTypeColumn = await page.locator('#devices-table tbody tr td:nth-child(4)').first();

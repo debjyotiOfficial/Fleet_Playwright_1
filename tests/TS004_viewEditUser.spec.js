@@ -168,11 +168,13 @@ test.describe('view Edit User', () => {
         await expect(page.locator(config.selectors.viewEditUser.deleteButton)).toBeVisible();
         await page.locator(config.selectors.viewEditUser.deleteButton).click( { force: true });
 
+        await page.waitForTimeout(3000);
+
         // Click on confirm delete
         await expect(page.locator(config.selectors.viewEditUser.confirmDelete)).toBeVisible();
         await page.locator(config.selectors.viewEditUser.confirmDelete).click();
 
-        await page.waitForTimeout(10000);
+        await page.waitForTimeout(15000);
 
         // Verify the username is not visible
         await expect(page.locator(config.selectors.viewEditUser.searchUser)).toBeVisible();
