@@ -1,18 +1,35 @@
 {
-  "name": "node-js-playwright-browserstack",
+  "name": "fleet-playwright-tests",
   "version": "1.0.0",
-  "description": "",
+  "description": "Fleet Management System - Playwright Test Suite",
   "main": "index.js",
   "scripts": {
-    "sample-test": "npx browserstack-node-sdk playwright test --config=./playwright.config.js",
-    "sample-local-test": "npx browserstack-node-sdk playwright test --config=./playwright.local.config.js",
-    "postinstall": "npm update browserstack-node-sdk"
+    "test": "playwright test --config=playwright.minimal.config.js",
+    "test:headed": "playwright test --config=playwright.minimal.config.js --headed",
+    "test:parallel": "playwright test --config=playwright.parallel.config.js",
+    "test:local": "playwright test --config=playwright.local.config.js",
+    "test:browserstack": "npx browserstack-node-sdk playwright test --config=./playwright.config.js",
+    "test:single": "playwright test --config=playwright.minimal.config.js --workers=1",
+    "test:debug": "playwright test --config=playwright.minimal.config.js --debug",
+    "test:ui": "playwright test --config=playwright.minimal.config.js --ui",
+    "report": "playwright show-report test-reports/html",
+    "install-browsers": "playwright install",
+    "install-deps": "playwright install-deps",
+    "setup": "npm run install-browsers && npm run install-deps",
+    "clean": "rimraf test-results test-reports",
+    "run-parallel": "node run-tests-parallel.js"
   },
-  "keywords": [],
+  "keywords": ["playwright", "testing", "fleet-management", "automation"],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "latest",
+    "@playwright/test": "^1.40.0",
     "browserstack-node-sdk": "latest"
+  },
+  "optionalDependencies": {
+    "rimraf": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
